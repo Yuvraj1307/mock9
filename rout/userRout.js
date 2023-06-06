@@ -71,7 +71,7 @@ userRout.post("/api/login", async (req, res) => {
 userRout.get("/api/users/:id/friends",auth,async (req,res)=>{
     let id=req.params.id
     console.log(req.body.userID)
-    let user=await userModel.findOne({_id:id})
+    let user=await userModel.findOne({_id:id}).populate("friends")
     res.status(201).send({msg:"here is all friends",friends:user.friends})
 })
 
